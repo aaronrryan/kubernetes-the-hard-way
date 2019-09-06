@@ -58,8 +58,7 @@ Install the Kubernetes binaries:
 The instance internal IP address will be used to advertise the API Server to members of the cluster. Retrieve the internal IP address for the current compute instance:
 
 ```
-INTERNAL_IP=$(curl -s -H "Metadata-Flavor: Google" \
-  http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/ip)
+INTERNAL_IP=$(host $HOSTNAME | awk '/has address/ { print $4 }') ; echo $INTERNAL_IP
 ```
 
 Create the `kube-apiserver.service` systemd unit file:
