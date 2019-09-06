@@ -295,7 +295,7 @@ Generate the Kubernetes API Server certificate and private key:
 ```
 {
 
-KUBERNETES_PUBLIC_ADDRESS=$(host controller-0 | awk '/has address/ { print $4 }')
+KUBERNETES_PUBLIC_ADDRESS=$(host controller-0 | awk '/has address/ { print $4 }'),$(host controller-1 | awk '/has address/ { print $4 }'),$(host controller-2 | awk '/has address/ { print $4 }') ; echo $KUBERNETES_PUBLIC_ADDRESS
 
 cat > kubernetes-csr.json <<EOF
 {
